@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__ . '/functions.php';
+
+// Menghitung jumlah buku yang valid untuk badge keranjang.
+$jumlahKeranjang = (isset($pdo) && $pdo instanceof PDO)
+    ? cart_count($pdo)
+    : 0;
 ?>
 <!doctype html>
 <html lang="id">
@@ -44,8 +49,8 @@ require_once __DIR__ . '/functions.php';
     >
         🛒
         <span class="cart-badge">
-            <?= cart_count() ?>
-        </span>
+        <?= $jumlahKeranjang ?>
+    </span>
     </a>
 
     <div class="header-actions">

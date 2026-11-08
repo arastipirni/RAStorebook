@@ -221,28 +221,63 @@ function require_user()
 }
 
 /** Jumlah seluruh item di keranjang. */
-function cart_count()
+function cart_count(PDO $pdo): int
 {
-    return array_sum($_SESSION['cart'] ?? []);
+    // Ambil item keranjang yang benar-benar tersedia di database.
+    $items = cart_items($pdo);
+    // Hitung jumlah seluruh buku berdasarkan kuantitasnya.
+    $jumlah = 0;
+    foreach ($items as $item) {
+        $jumlah += (int) $item['qty'];
+    }
+    return $jumlah;
 }
 
 /**
- * Ambil isi keranjang dari session lalu cari detail buku di database.
+ * Mengambil isi keranjang dari session dan database.
+ * Menghapus ID buku yang sudah tidak tersedia.
  */
-function cart_items(PDO $pdo)
+function cart_items(PDO $pdo): array
 {
+    // Ambil data keranjang dari session.
     $cart = $_SESSION['cart'] ?? [];
 
-    if (!$cart) {
+    // Pastikan data keranjang berbentuk array.
+    if (!is_array($cart)) {
+        $_SESSION['cart'] = [];
         return [];
     }
 
-    $ids = array_keys($cart);
+    // Bersihkan ID dan jumlah buku yang tidak valid.
+    $validCart = [];
+
+    foreach ($cart as $id => $qty) {
+        $id = (int) $id;
+        $qty = (int) $qty;
+
+        if ($id > 0 && $qty > 0) {
+            $validCart[$id] = $qty;
+        }
+    }
+
+    // Simpan kembali keranjang yang sudah dibersihkan.
+    $_SESSION['cart'] = $validCart;
+
+    // Jika tidak ada buku, kembalikan array kosong.
+    if (empty($validCart)) {
+        return [];
+    }
+
+    // Ambil semua ID buku.
+    $ids = array_keys($validCart);
+
+    // Membuat placeholder untuk query SQL.
     $placeholders = implode(
         ',',
         array_fill(0, count($ids), '?')
     );
 
+    // Ambil data buku berdasarkan ID.
     $stmt = $pdo->prepare(
         "SELECT *
          FROM books
@@ -254,25 +289,52 @@ function cart_items(PDO $pdo)
     $rows = $stmt->fetchAll();
 
     $cleanRows = [];
+    $foundIds = [];
 
+    // Periksa setiap buku yang ditemukan.
     foreach ($rows as $row) {
-        if ((int)$row['stock'] <= 0) {
-            unset($_SESSION['cart'][$row['id']]);
+
+        $bookId = (int) $row['id'];
+        $foundIds[$bookId] = true;
+
+        $stock = (int) $row['stock'];
+
+        // Hapus buku yang stoknya habis.
+        if ($stock <= 0) {
+            unset($_SESSION['cart'][$bookId]);
             continue;
         }
 
-        $row['qty'] = max(0, (int) ($cart[$row['id']] ?? 0));
-        if ($row['qty'] > 0) {
-            $row['subtotal'] = $row['qty'] * (float) $row['price'];
-            $cleanRows[] = $row;
-        } else {
-            unset($_SESSION['cart'][$row['id']]);
+        // Ambil jumlah buku dari session.
+        $qty = (int) ($validCart[$bookId] ?? 0);
+
+        if ($qty <= 0) {
+            unset($_SESSION['cart'][$bookId]);
+            continue;
+        }
+
+        // Sesuaikan jumlah dengan stok yang tersedia.
+        $qty = min($qty, $stock);
+
+        // Perbarui jumlah dalam session.
+        $_SESSION['cart'][$bookId] = $qty;
+
+        // Hitung subtotal.
+        $row['qty'] = $qty;
+        $row['subtotal'] = $qty * (float) $row['price'];
+
+        $cleanRows[] = $row;
+    }
+
+    // Hapus ID buku yang sudah tidak ditemukan di database.
+    foreach ($validCart as $bookId => $qty) {
+        if (!isset($foundIds[$bookId])) {
+            unset($_SESSION['cart'][$bookId]);
         }
     }
 
     return $cleanRows;
 }
-
 /** Hitung total harga keranjang. */
 function cart_total(PDO $pdo)
 {
