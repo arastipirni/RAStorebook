@@ -1,0 +1,12 @@
+# Jangan unggah file ZIP
+*.zip
+
+# Jangan unggah bukti transfer dan upload pengguna
+/assets/uploads/
+
+# File konfigurasi rahasia
+.env
+.env.*
+
+# File sementara
+*.log

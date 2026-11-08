@@ -1,0 +1,354 @@
+/* =========================================================
+   PROFILE PAGE - RAStory BOOKSTORE
+   Tampilan profil pengguna dan riwayat pembelian.
+   ========================================================= */
+
+.profile-page {
+    min-height: 70vh;
+    background: var(--blue-soft);
+    padding: 42px 0 70px;
+}
+
+.profile-container {
+    width: min(1080px, 92%);
+    margin: 0 auto;
+}
+
+/* -------------------------
+   PROFIL PENGGUNA
+   ------------------------- */
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: #fff;
+    border: 1px solid #d6e3eb;
+    border-radius: 18px;
+    padding: 28px 32px;
+    box-shadow: 0 8px 24px rgba(31,82,121,.10);
+}
+
+.profile-avatar {
+    width: 82px;
+    height: 82px;
+    flex: 0 0 82px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #69b6ef, #9bd8fa);
+    color: #fff;
+    font-size: 31px;
+    font-weight: 800;
+    box-shadow: 0 5px 14px rgba(31,82,121,.16);
+}
+
+.profile-data {
+    min-width: 0;
+}
+
+.profile-data h1 {
+    margin: 0 0 17px;
+    color: #1f5279;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.profile-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 9px;
+    font-size: 14px;
+}
+
+.profile-row strong {
+    min-width: 135px;
+    color: #315975;
+    font-weight: 700;
+}
+
+.profile-row span {
+    color: #344854;
+    overflow-wrap: anywhere;
+}
+
+/* -------------------------
+   RIWAYAT PEMBELIAN
+   ------------------------- */
+.history-section {
+    margin-top: 30px;
+}
+
+.history-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+
+.history-header h2 {
+    margin: 0 0 6px;
+    color: #1f5279;
+    font-size: 25px;
+    line-height: 1.25;
+    font-weight: 800;
+}
+
+.history-header p {
+    margin: 0;
+    color: #657883;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.history-card {
+    background: #fff;
+    border: 1px solid #d6e3eb;
+    border-radius: 16px;
+    padding: 22px 24px;
+    box-shadow: 0 7px 22px rgba(31,82,121,.08);
+}
+
+.history-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5edf2;
+}
+
+.history-card-top > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.history-label {
+    color: #7c8d97;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.history-card-top strong {
+    color: #2c5877;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.history-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 78px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    background: #edf6fb;
+    color: #285878;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.history-status-dibatalkan {
+    background: #fff0f0;
+    color: #b42323;
+}
+
+.history-status-selesai {
+    background: #e9f8ef;
+    color: #1f8a52;
+}
+
+.history-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 17px 0;
+}
+
+.history-meta div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.history-meta span {
+    color: #7c8d97;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.history-meta strong {
+    color: #2d4f67;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.history-items {
+    border-top: 1px solid #e5edf2;
+    padding-top: 15px;
+}
+
+.history-items h3 {
+    margin: 0 0 12px;
+    color: #315975;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.history-item {
+    display: grid;
+    grid-template-columns: 60px minmax(0,1fr) auto;
+    gap: 14px;
+    align-items: center;
+    padding: 11px 0;
+    border-bottom: 1px solid #eef2f5;
+}
+
+.history-item:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.history-book-image {
+    width: 60px;
+    height: 76px;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #f4f8fa;
+    border: 1px solid #e4edf2;
+}
+
+.history-book-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.history-book-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.history-book-info strong {
+    color: #263f53;
+    font-size: 13px;
+    line-height: 1.45;
+    font-weight: 700;
+}
+
+.history-book-info span {
+    color: #7b8991;
+    font-size: 11px;
+}
+
+.history-book-price {
+    color: #115b96;
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.empty-history {
+    background: #fff;
+    border: 1px solid #d6e3eb;
+    border-radius: 16px;
+    padding: 46px 24px;
+    text-align: center;
+    box-shadow: 0 7px 22px rgba(31,82,121,.07);
+}
+
+.empty-history h3 {
+    margin: 0 0 8px;
+    color: #315975;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.empty-history p {
+    margin: 0 0 20px;
+    color: #71808a;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.profile-link {
+    transition: color .2s ease;
+}
+
+.profile-link:hover {
+    color: var(--line);
+}
+
+@media (max-width: 720px) {
+    .profile-page {
+        padding: 28px 0 46px;
+    }
+
+    .profile-card {
+        align-items: flex-start;
+        gap: 17px;
+        padding: 22px;
+    }
+
+    .profile-avatar {
+        width: 64px;
+        height: 64px;
+        flex-basis: 64px;
+        font-size: 24px;
+    }
+
+    .profile-data h1 {
+        font-size: 22px;
+    }
+
+    .profile-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        margin-bottom: 10px;
+    }
+
+    .profile-row strong {
+        min-width: 0;
+    }
+
+    .history-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .history-header h2 {
+        font-size: 22px;
+    }
+
+    .history-meta {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .history-item {
+        grid-template-columns: 52px minmax(0,1fr);
+    }
+
+    .history-book-image {
+        width: 52px;
+        height: 68px;
+    }
+
+    .history-book-price {
+        grid-column: 2;
+    }
+
+}

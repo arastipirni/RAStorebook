@@ -1,0 +1,276 @@
+/* =========================================================
+   ABOUT US - STYLE KHUSUS HALAMAN ABOUT
+
+   Kegunaan:
+   - Meniru komposisi screenshot referensi.
+   - Setiap bagian dibuat 50% : 50%.
+   - Tinggi section dibuat konsisten.
+   - Foto memenuhi kolom tanpa stretch.
+   - CTA dan footer mengikuti proporsi referensi.
+   ========================================================= */
+
+.about-page {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #ffffff;
+}
+
+/* =========================================================
+   TIGA SECTION UTAMA
+   ========================================================= */
+
+.about-section {
+    width: 100%;
+    min-height: 285px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-sizing: border-box;
+}
+.about-section + .about-section {
+    border-top: 8px solid #ffffff;
+}
+.about-text {
+    min-height: 285px;
+    padding: 38px 7.4%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-light {
+    background: #e9f8ff;
+    color: #111111;
+}
+
+.about-blue {
+    background: #78bdf2;
+    color: #ffffff;
+    text-align: center;
+    align-items: center;
+    padding-left: 9%;
+    padding-right: 9%;
+}
+
+.about-text h1 {
+    margin: 0 0 19px;
+    font-size: 30px;
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: -0.2px;
+}
+
+.about-text p {
+    width: 100%;
+    max-width: 520px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.about-blue p {
+    max-width: 430px;
+    margin: 0 0 10px;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   FOTO
+   ========================================================= */
+
+.about-photo {
+    width: 100%;
+    height: 285px;
+    overflow: hidden;
+    background: #edf1f2;
+}
+
+.about-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.about-cta {
+    width: 100%;
+    min-height: 250px;
+    padding: 36px 20px 39px;
+    background: #69b5ef;
+    color: #ffffff;
+    text-align: center;
+    box-sizing: border-box;
+    border-top: 8px solid #ffffff;
+}
+
+.about-cta h2 {
+    margin: 0 0 18px;
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: 800;
+}
+
+.about-cta p {
+    width: min(670px, 90%);
+    margin: 0 auto 30px;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.about-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 72px;
+}
+
+.about-button {
+    width: 126px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffffff;
+    border-radius: 7px;
+    background: transparent;
+    color: #ffffff;
+    font-size: 11px;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.about-button:hover {
+    background: #ffffff;
+    color: #4f91c9;
+    transform: translateY(-2px);
+}
+
+/* =========================================================
+   FOOTER KHUSUS ABOUT
+   Hanya menyamakan proporsinya dengan referensi.
+   ========================================================= */
+
+main.about-page + .site-footer {
+    padding: 27px 0 8px;
+    background: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 0;
+}
+
+main.about-page + .site-footer .footer-grid {
+    width: min(930px, 86%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.45fr 0.8fr 1fr 0.9fr;
+    gap: 55px;
+    align-items: start;
+}
+
+main.about-page + .site-footer .footer-logo {
+    width: 116px;
+    margin-bottom: 9px;
+}
+
+main.about-page + .site-footer h4 {
+    margin: 0 0 11px;
+    font-size: 13px;
+}
+
+main.about-page + .site-footer p,
+main.about-page + .site-footer a {
+    font-size: 11px;
+    line-height: 1.65;
+    color: #242424;
+}
+
+main.about-page + .site-footer .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+main.about-page + .site-footer .footer-bottom {
+    width: min(930px, 86%);
+    margin: 16px auto 0;
+    padding-top: 8px;
+    border-top: 1px solid #c8c8c8;
+    text-align: center;
+    font-size: 10px;
+    color: #666666;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .about-section {
+        grid-template-columns: 1fr;
+    }
+
+    .about-text {
+        min-height: 240px;
+        padding: 34px 8%;
+    }
+
+    .about-photo {
+        height: 240px;
+    }
+
+    .about-blue {
+        min-height: 240px;
+    }
+
+    .about-buttons {
+        gap: 26px;
+    }
+
+    main.about-page + .site-footer .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .about-text {
+        padding: 29px 20px;
+    }
+
+    .about-text h1 {
+        font-size: 25px;
+    }
+
+    .about-text p {
+        font-size: 14px;
+    }
+
+    .about-blue p {
+        font-size: 13px;
+    }
+
+    .about-cta h2 {
+        font-size: 23px;
+    }
+
+    .about-buttons {
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    main.about-page + .site-footer .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+}

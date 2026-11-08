@@ -1,0 +1,2296 @@
+/*
+ * FILE: style.css
+ *
+ * KEGUNAAN FILE INI:
+ * CSS ini mengatur tampilan seluruh website BookStore.
+ * Di dalamnya ada aturan untuk Header, Homepage, Kartu Buku, Detail Buku,
+ * Footer, Login, Form, serta Dashboard Admin.
+ *
+ * CARA MEMBACANYA:
+ * - Variabel warna ada di bagian :root.
+ * - Setiap blok besar diberi judul agar mudah dicari.
+ * - @media digunakan untuk membuat tampilan tetap rapi di layar kecil.
+ */
+
+:root {
+    --navy:#1f5279;
+    --navy-dark:#143b59;
+    --blue:#a9d7f6;
+    --blue-soft:#edf9ff;
+    --blue-pale:#dff1ff;
+    --blue-panel:#b8d8ea;
+    --line:#1f5f99;
+    --ink:#111;
+    --muted:#73787c;
+    --white:#fff;
+    --red:#ef3b3b;
+    --green:#1f8a52;
+    --shadow:0 3px 14px rgba(16,56,84,.10);
+}
+* {
+    box-sizing:border-box;
+}
+html {
+    scroll-behavior:smooth;
+}
+body {
+    margin:0;
+    color:var(--ink);
+    font-family:"Poppins",Arial,sans-serif;
+    background:#fff;
+}
+a {
+    text-decoration:none;
+    color:inherit;
+}
+img {
+    max-width:100%;
+    display:block;
+}
+button,input,select,textarea {
+    font:inherit;
+}
+button {
+    cursor:pointer;
+}
+/* Container: membatasi lebar isi agar layout tidak terlalu melebar. */
+.container {
+    width:min(1200px,92%);
+    margin:0 auto;
+}
+/* USER HEADER: bagian paling atas website User, berisi logo dan navigasi. */
+/* Site header: mengatur tinggi, posisi, dan susunan elemen header. */
+.site-header {
+    height:82px;
+    background:#fff;
+    border-bottom:1px solid #e4e9ee;
+    display:flex;
+    align-items:center;
+    padding:0 max(4vw,30px);
+    gap:18px;
+    box-shadow:0 2px 14px rgba(31,82,121,.08);
+    position:sticky;
+    top:0;
+    z-index:20;
+}
+.brand img {
+    width:164px;
+    height:auto;
+}
+/* Navigasi utama: Home, About Us, dan Contact. */
+.site-header nav {
+    display:flex;
+    align-items:center;
+    gap:9px;
+    font-size:15px;
+    margin-left:auto;
+}
+.site-header nav a {
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:9px 13px;
+    border:1px solid transparent;
+    border-radius:9px;
+    background:#fff;
+    color:#111;
+    box-shadow:0 2px 5px rgba(31,82,121,.07);
+    -webkit-tap-highlight-color:transparent;
+    transition:transform .16s ease, box-shadow .16s ease, background .16s ease,
+        border-color .16s ease, color .16s ease;
+}
+.site-header nav a:hover,
+.site-header nav a:focus-visible {
+    color:#2f6790;
+    background:#edf9ff;
+    border-color:#a9d7f6;
+    box-shadow:0 3px 7px rgba(31,82,121,.09);
+    transform:translateY(-1px);
+    outline:none;
+}
+/* Ikon cart: pintasan menuju keranjang belanja User. */
+.header-cart {
+    margin-left:0;
+    font-size:22px;
+    position:relative;
+}
+.cart-badge {
+    position:absolute;
+    right:-11px;
+    top:-9px;
+    background:#70b4ed;
+    color:#fff;
+    font-size:10px;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-weight:700;
+}
+.header-actions {
+    display:flex;
+    gap:10px;
+    align-items:center;
+}
+.header-user {
+    font-size:13px;
+    color:#52616c;
+}
+/* Tombol umum: dipakai ulang untuk tombol di banyak halaman. */
+.btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:40px;
+    padding:9px 20px;
+    border-radius:8px;
+    border:2px solid var(--line);
+    font-weight:600;
+    transition:.2s;
+}
+.btn:hover {
+    transform:translateY(-1px);
+}
+.btn-primary {
+    background:#69b6ef;
+    color:#fff;
+    border-color:#69b6ef;
+}
+.btn-outline {
+    background:#fff;
+    color:#4e83ac;
+}
+.flash {
+    width:min(1200px,92%);
+    margin:12px auto 0;
+    padding:11px 16px;
+    border-radius:8px;
+    font-size:13px;
+}
+.flash.success {
+    background:#e9f8ef;
+    color:var(--green);
+}
+.flash.error {
+    background:#fff1f1;
+    color:#b42323;
+}
+/* HOME: seluruh tampilan halaman utama, hero, kategori, dan daftar buku. */
+/* Hero: area pembuka website yang berisi teks sambutan dan gambar. */
+.hero {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:320px;
+    background:var(--blue-soft);
+}
+.hero-copy {
+    display:flex;
+    align-items:center;
+    padding:42px max(5vw,38px);
+}
+.hero-copy-inner {
+    width:min(490px,100%);
+    margin:0 auto;
+}
+.hero h1 {
+    font-size:39px;
+    line-height:1.04;
+    margin:0 0 20px;
+    font-weight:800;
+    letter-spacing:-1.2px;
+}
+.hero p {
+    font-size:14px;
+    line-height:1.65;
+    margin:0;
+    color:#2c3840;
+    max-width:500px;
+}
+/* Search box: digunakan untuk mencari buku berdasarkan kata kunci. */
+.search-box {
+    margin-top:28px;
+    display:flex;
+    border:1.8px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    background:#fff;
+    height:48px;
+}
+.search-box input {
+    border:0;
+    outline:0;
+    flex:1;
+    padding:0 16px;
+    color:#333;
+    min-width:0;
+}
+.search-box button {
+    width:132px;
+    border:0;
+    border-left:1px solid var(--line);
+    background:#e8f4ff;
+    color:#1d5c91;
+    font-weight:500;
+}
+.hero-image {
+    min-height:320px;
+    background:#c8dfea;
+    overflow:hidden;
+}
+.hero-image img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+}
+/* Category bar: menampilkan tepat 5 kategori buku sebagai filter. */
+.category-bar {
+    display:flex;
+    flex-wrap:nowrap;
+    gap:14px;
+    padding:18px 30px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    background:#fff;
+    scroll-behavior:smooth;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    overscroll-behavior-x:contain;
+}
+
+.category-bar::-webkit-scrollbar {
+    height:7px;
+}
+
+.category-bar::-webkit-scrollbar-track {
+    background:#eef7fc;
+    border-radius:999px;
+}
+
+.category-bar::-webkit-scrollbar-thumb {
+    background:#9fc4dd;
+    border-radius:999px;
+}
+.category-pill {
+    display:flex;
+    flex:0 0 auto;
+    align-items:center;
+    justify-content:center;
+    min-width:150px;
+    height:65px;
+    padding:8px 14px;
+    border:1.8px solid var(--line);
+    border-radius:999px;
+    color:#1c4f7e;
+    background:#fff;
+    font-size:15px;
+    line-height:1.2;
+    text-align:center;
+    white-space:nowrap;
+}
+.category-pill.active {
+    background:#e8f4ff;
+}
+.books-section {
+    background:#eaf7ff;
+    padding:22px 30px 10px;
+}
+.books-section h2 {
+    text-align:center;
+    font-size:28px;
+    color:#164e82;
+    margin:0 0 20px;
+    font-weight:800;
+}
+/* Book grid: mengatur agar kartu-kartu buku tersusun rapi dan sama lebarnya. */
+.book-grid {
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:30px;
+    max-width:1140px;
+    margin:0 auto;
+}
+/* Book card: kotak informasi satu buku beserta tombol Detail dan Add to Cart. */
+.book-card {
+    background:#fff;
+    border:1px solid #d2dfe8;
+    border-radius:9px;
+    padding:11px 11px 13px;
+    box-shadow:var(--shadow);
+    display:flex;
+    flex-direction:column;
+    min-height:310px;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* Kartu sedikit naik saat mouse diarahkan */
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 8px 20px
+        rgba(16, 56, 84, 0.18);
+}
+
+/* Kartu sedikit mengecil saat benar-benar ditekan */
+.book-card:active {
+    transform:
+        translateY(-1px)
+        scale(0.98);
+}
+
+/* Cover wrap: memberi ukuran area cover yang sama untuk semua buku. */
+.cover-wrap {
+    height:280px;
+    border-radius:5px;
+    background:#f8fafc;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
+    margin-bottom:8px;
+}
+.cover-wrap img {
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    padding:6px;
+    transition:
+        transform 0.2s ease;
+}
+
+/* Cover sedikit membesar
+   saat mouse diarahkan ke kartu buku */
+.book-card:hover .cover-wrap img {
+    transform: scale(1.03);
+}
+
+.book-title {
+    font-size:12px;
+    line-height:1.3;
+    font-weight:600;
+    min-height:32px;
+    margin-top:1px;
+}
+.book-author {
+    font-size:10px;
+    color:#777;
+    line-height:1.35;
+    min-height:28px;
+    margin-top:3px;
+}
+.book-price {
+    color:#115b96;
+    font-weight:700;
+    font-size:15px;
+    margin-top:auto;
+    padding-top:8px;
+}
+/* Card actions: menata tombol Detail dan Add to Cart agar sejajar. */
+.card-actions {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    width:100%;
+    margin-top:10px;
+    align-items:stretch;
+}
+
+.card-btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    min-width:0;
+    min-height:38px;
+    height:38px;
+    padding:6px 8px;
+    border:1.5px solid var(--line);
+    border-radius:8px;
+    color:#285b83;
+    background:#fff;
+    font-size:11px;
+    line-height:1.2;
+    font-weight:600;
+    text-align:center;
+    white-space:nowrap;
+    text-decoration:none;
+    box-sizing:border-box;
+    box-shadow:0 3px 8px rgba(31,82,121,.07);
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+.card-btn.primary {
+    background:#69b6ef;
+    color:#fff;
+    border-color:#69b6ef;
+}
+.promo-grid {
+    display:grid;
+    grid-template-columns:1.7fr 1fr 1.7fr;
+    gap:16px;
+    max-width:1140px;
+    margin:22px auto 18px;
+}
+.promo-card {
+    border-radius:0;
+    overflow:hidden;
+    background:#fff;
+    min-height:250px;
+}
+.promo-card img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+/* DETAIL: tampilan informasi lengkap untuk satu buku. */
+.detail-page {
+    background: var(--blue-soft);
+    padding: 18px 0 0;
+    margin: 0;
+}
+.detail-inner {
+    width:min(1190px,92%);
+    margin:0 auto;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Detail top: membagi halaman menjadi area cover dan area informasi buku. */
+.detail-top {
+    display:grid;
+    grid-template-columns:340px 1fr;
+    gap:46px;
+    align-items:start;
+}
+.detail-cover {
+   background: transparent;
+    min-height: 420px;
+    border-radius: 0;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: none;
+}
+.detail-cover img {
+    width:100%;
+    height:380px;
+    object-fit:contain;
+}
+.detail-info {
+    padding-top:18px;
+}
+.detail-info h1 {
+    font-size:31px;
+    line-height:1.15;
+    margin:0 0 6px;
+    font-weight:800;
+}
+.detail-info .author {
+    font-size:13px;
+    color:#7b7f82;
+    margin-bottom:7px;
+}
+.detail-info .price {
+    font-size:18px;
+    color:#1767a0;
+    font-weight:700;
+    margin-bottom:14px;
+}
+/* Add form: memilih jumlah buku lalu memasukkannya ke keranjang. */
+.add-form {
+    display:flex;
+    gap:9px;
+    align-items:center;
+}
+.qty {
+    height:38px;
+    width:76px;
+    border:1px solid #cbd8e2;
+    border-radius:7px;
+    padding:0 10px;
+    background:#fff;
+}
+.description {
+    margin-top:25px;
+    font-size:16px;
+    line-height:1.75;
+    color:#2f3d46;
+}
+.description h3 {
+    font-size:13px;
+    text-transform:none;
+    color:#123e60;
+    margin:19px 0 8px;
+}
+.info-strip {
+    width: 92%;
+    max-width: 1200px;
+    background: #ffffff;
+    border: 25px solid #e9f8ff;
+    padding: 15px 25px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 15px;
+    box-sizing: border-box;
+
+}
+.info-strip strong {
+    display:block;
+    color:#193e5c;
+    margin-bottom:4px;
+}
+/* FOOTER: informasi website di bagian paling bawah setiap halaman User. */
+.site-footer {
+    padding: 28px 0 8px;
+    background: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 0;
+}
+/* Footer grid: membagi footer menjadi kolom About, Navigation, Category, dan Contact. */
+.footer-grid {
+    width:min(1120px,90%);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.5fr .8fr 1.2fr .9fr;
+    gap:40px;
+    align-items:start;
+}
+.footer-logo {
+    width:120px;
+    margin-bottom:8px;
+}
+.site-footer h4 {
+    margin:0 0 11px;
+    font-size:14px;
+}
+.site-footer p,.site-footer a {
+    font-size:12px;
+    line-height:1.65;
+    color:#242424;
+}
+.footer-column {
+    min-width:0;
+}
+/* Footer links: sengaja dibuat vertikal supaya setiap link turun ke baris berikutnya. */
+.footer-links {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:6px;
+}
+.footer-links a {
+    display:block !important;
+    width:auto !important;
+    max-width:100%;
+    margin:0 !important;
+    white-space:normal;
+    word-break:normal;
+    overflow-wrap:anywhere;
+}
+.footer-contact > a {
+    display:block;
+    width:max-content;
+    max-width:100%;
+    white-space:normal;
+    overflow-wrap:anywhere;
+}
+.footer-social {
+    display:flex;
+    gap:17px;
+    margin-top:10px;
+    font-weight:700;
+}
+.footer-bottom {
+    width:min(1120px,90%);
+    margin:18px auto 0;
+    padding-top:8px;
+    border-top:1px solid #c8c8c8;
+    text-align:center;
+    font-size:11px;
+    color:#666;
+}
+/* AUTH: tampilan login pengguna dan admin pada halaman terpisah. */
+/* Auth shell: membagi halaman login menjadi panel kiri dan panel kanan. */
+.auth-shell {
+    min-height:100vh;
+    display:grid;
+    grid-template-columns:45% 55%;
+    background:#fff;
+}
+.auth-left {
+    background:#e9f8ff;
+    padding:54px 58px 38px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.auth-left h1 {
+    margin:7px 0 6px;
+    font-size:29px;
+}
+.auth-left .subtitle {
+    font-family:Georgia,serif;
+    color:#7d8286;
+    font-size:19px;
+    margin:22px 0 15px;
+    text-align:center;
+}
+/* Auth form: tempat User memasukkan username/email dan password. */
+.auth-form {
+    width:min(355px,100%);
+}
+.auth-field {
+    margin:18px 0;
+}
+.auth-field label {
+    display:block;
+    color:#295b7b;
+    font-family:Georgia,serif;
+    font-size:15px;
+    margin-bottom:9px;
+}
+.auth-input-wrap {
+    position:relative;
+}
+.auth-field input {
+    width:100%;
+    height:62px;
+    padding:0 55px 0 37px;
+    border:0;
+    border-radius:18px;
+    background:#fff;
+    outline:0;
+    font-size:17px;
+    color:#555;
+}
+.auth-field input::placeholder {
+    color:#979797;
+}
+.auth-icon {
+    position:absolute;
+    right:22px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:26px;
+    color:#000;
+}
+.auth-submit {
+    display:block;
+    width:72%;
+    height:42px;
+    margin:20px auto 0;
+    border:0;
+    border-radius:999px;
+    background:#9fd5f7;
+    color:#fff;
+    font-weight:700;
+}
+.account-row {
+    text-align:center;
+    margin-top:28px;
+    color:#909294;
+    font-family:Georgia,serif;
+    font-size:17px;
+}
+.account-row a {
+    color:#2c5b7c;
+    margin-left:10px;
+}
+.auth-right {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:46px 38px 28px;
+}
+.auth-right .logo {
+    width:142px;
+    margin:0 0 45px;
+    align-self:flex-end;
+    margin-right:2px;
+}
+.auth-right h2 {
+    font-size:34px;
+    margin:0;
+    font-weight:800;
+}
+.auth-right .login-art {
+    width:min(320px,68%);
+    height:320px;
+    object-fit:contain;
+    margin:42px auto 36px;
+}
+/* Penanda halaman login yang sedang dibuka. */
+.login-modes {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    width:min(490px,94%);
+}
+.login-modes a {
+    height:44px;
+    border:2px solid #2f5979;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Georgia,serif;
+    font-size:17px;
+    color:#335c7c;
+    background:#fff;
+}
+.login-modes a.active {
+    background:#d9ecfb;
+}
+/* Penanda tunggal: login pengguna dan admin berada di halaman terpisah. */
+.login-modes.single {
+    grid-template-columns:1fr;
+    width:min(310px,94%);
+}
+.login-mode-current {
+    min-height:44px;
+    border:2px solid #2f5979;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Georgia,serif;
+    font-size:17px;
+    color:#335c7c;
+    background:#d9ecfb;
+}
+.mode-note {
+    text-align:center;
+    font-size:12px;
+    color:#818a90;
+    margin-top:10px;
+}
+.auth-message {
+    width:min(355px,100%);
+    margin-top:12px;
+}
+/* FORMS / GENERIC PAGES: gaya umum untuk form, panel, tabel, dan halaman informasi. */
+.page-wrap {
+    width:min(1160px,92%);
+    margin:0 auto;
+    padding:44px 0 70px;
+    min-height:70vh;
+}
+.page-wrap h1 {
+    font-size:32px;
+    margin:0 0 20px;
+    color:#1d557d;
+}
+.panel {
+    background:#fff;
+    border:1px solid #dfe7ed;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    padding:24px;
+}
+/* Form grid: menyusun field form menjadi dua kolom pada layar besar. */
+.form-grid {
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:16px;
+    min-width:0;
+}
+.form-grid .full {
+    grid-column:1/-1;
+}
+.form-grid label {
+    font-size:13px;
+    color:#2c5877;
+    display:block;
+    margin-bottom:7px;
+}
+.form-grid input,.form-grid select,.form-grid textarea {
+    width:100%;
+    padding:12px;
+    border:1px solid #cbd9e2;
+    border-radius:7px;
+    outline:0;
+    background:#fff;
+}
+.notice {
+    padding:12px;
+    border-radius:8px;
+    background:#f3f9fd;
+    color:#36556b;
+    font-size:13px;
+    margin-bottom:15px;
+}
+.table-wrap {
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+/* Data table: tabel untuk data buku, user, kategori, dan pesanan di Admin. */
+.data-table {
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+.data-table th,.data-table td {
+    padding:11px 9px;
+    border-bottom:1px solid #e6edf1;
+    text-align:left;
+    font-size:12px;
+    vertical-align:top;
+}
+.data-table th {
+    color:#2a587b;
+}
+.badge {
+    display:inline-flex;
+    align-items:center;
+    padding:4px 8px;
+    border-radius:999px;
+    background:#edf6fb;
+    color:#285878;
+    font-size:10px;
+}
+/* ADMIN: seluruh tampilan Dashboard dan halaman pengelolaan data Admin. */
+/* Admin shell: membagi layar Admin menjadi sidebar kiri dan konten kanan. */
+.admin-shell {
+    display:grid;
+    grid-template-columns:280px minmax(0, 1fr);
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    min-height:100vh;
+    background:#fff;
+}
+.admin-sidebar {
+    background:#fff;
+    border-right:1px solid #efefef;
+    padding:26px 19px 22px;
+    display:flex;
+    flex-direction:column;
+}
+.admin-logo {
+    width:120px;
+    margin-bottom:14px;
+}
+.admin-sidebar h2 {
+    font-size:24px;
+    color:#3b607b;
+    margin:0 0 18px 27px;
+}
+/* Admin nav: menu Dashboard, Kelola Buku, Kategori, User, dan Pesanan. */
+.admin-nav {
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    padding:0 18px;
+}
+.admin-nav a {
+    position:relative;
+    height:36px;
+    border:2px solid #2f5979;
+    border-radius:7px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#3a607f;
+    font-family:Georgia,serif;
+    font-size:15px;
+}
+.admin-nav a.active {
+    background:#d9ecfb;
+}
+
+.admin-nav a .admin-nav-dot {
+    position:absolute;
+    top:50%;
+    right:13px;
+    width:11px;
+    height:11px;
+    border:2px solid #fff;
+    border-radius:50%;
+    background:#e53935;
+    box-shadow:0 0 0 1px rgba(229,57,53,.12);
+    transform:translateY(-50%);
+}
+.admin-account {
+    margin-top:auto;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 17px 15px;
+}
+.admin-avatar {
+    width:29px;
+    height:29px;
+    border-radius:50%;
+    background:#000;
+    display:grid;
+    place-items:center;
+    color:#fff;
+    font-size:12px;
+}
+.admin-account strong {
+    font-size:11px;
+    color:#3d5f78;
+    display:block;
+}
+.admin-account a {
+    font-size:11px;
+    color:red;
+    display:block;
+    margin-top:5px;
+}
+.admin-main {
+    min-width:0;
+    max-width:100%;
+    background:#b8d7e9;
+}
+.admin-topbar {
+    height:108px;
+    border-bottom:1px solid rgba(255,255,255,.85);
+    padding:33px 36px 18px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+}
+.admin-topbar h1 {
+    margin:0;
+    color:#fff;
+    font-size:25px;
+}
+.admin-topbar p {
+    margin:5px 0 0;
+    color:#fff;
+    font-family:Georgia,serif;
+    font-size:12px;
+    text-decoration:underline;
+    font-style:italic;
+}
+.admin-date {
+    color:#fff;
+    font-family:Georgia,serif;
+    font-size:12px;
+    margin-top:5px;
+}
+.admin-content {
+    max-width:100%;
+    min-width:0;
+    padding:25px 37px 50px;
+    box-sizing:border-box;
+}
+/* Stats grid: kartu ringkasan jumlah buku, user, pesanan, dan pendapatan. */
+.stats-grid {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:30px;
+    max-width:650px;
+}
+.stat-card {
+    background:#fff;
+    border:1px solid #b7c4ce;
+    border-radius:9px;
+    min-height:114px;
+    padding:17px 22px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+}
+.stat-card h4 {
+    font-size:10px;
+    color:#315975;
+    margin:0;
+}
+.stat-number {
+    font-size:24px;
+    font-weight:800;
+    color:#355b78;
+    margin:7px 0 5px;
+}
+.stat-sub {
+    font-size:10px;
+    color:#a3b6c1;
+    margin:0;
+}
+.stat-icon {
+    width:38px;
+    height:38px;
+    background:#f0f2f4;
+    border-radius:11px;
+    display:grid;
+    place-items:center;
+    font-size:18px;
+}
+
+.admin-panel {
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    margin-top:22px;
+    padding:22px;
+    box-sizing:border-box;
+    border-radius:10px;
+    background:#fff;
+    box-shadow:0 1px 4px rgba(0,0,0,.05);
+}
+.admin-panel h2 {
+    margin:0 0 15px;
+    color:#315975;
+    font-size:20px;
+}
+.toolbar {
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    align-items:center;
+    margin-bottom:16px;
+}
+.actions {
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+}
+.admin-actions /* Tombol umum: dipakai ulang untuk tombol di banyak halaman. */
+.btn {
+    min-height:34px;
+    padding:7px 13px;
+    font-size:12px;
+}
+/* RESPONSIVE 950px: penyesuaian layout saat layar mulai mengecil. */
+@media(max-width:950px) {
+    /* Navigasi utama: Home, About Us, dan Contact. */
+.site-header nav {
+        gap:16px;
+    }
+    .header-actions .header-user {
+        display:none;
+    }
+    /* Book grid: mengatur agar kartu-kartu buku tersusun rapi dan sama lebarnya. */
+.book-grid {
+        grid-template-columns:repeat(3,1fr);
+    }
+    .promo-grid {
+        grid-template-columns:1fr;
+    }
+    /* Hero: area pembuka website yang berisi teks sambutan dan gambar. */
+.hero {
+        grid-template-columns:1fr;
+    }
+    .hero-image {
+        min-height:250px;
+    }
+    .hero-copy {
+        padding:38px 6%;
+    }
+    /* Auth shell: membagi halaman login menjadi panel kiri dan panel kanan. */
+.auth-shell {
+        grid-template-columns:1fr;
+    }
+    .auth-right {
+        display:none;
+    }
+    .auth-left {
+        min-height:100vh;
+    }
+}
+/* RESPONSIVE 720px: tampilan tablet/HP, beberapa grid dibuat lebih sederhana. */
+@media(max-width:720px) {
+    /* Site header: mengatur tinggi, posisi, dan susunan elemen header. */
+.site-header {
+        height:74px;
+        padding:0 16px;
+    }
+    .brand img {
+        width:125px;
+    }
+    /* Navigasi utama: Home, About Us, dan Contact. */
+.site-header nav {
+        display:none;
+    }
+    .header-actions .btn-outline {
+        display:none;
+    }
+    /* Tombol kembali ke panel tetap terlihat saat admin memakai layar kecil. */
+    .header-actions .admin-preview-panel-btn {
+        display:inline-flex;
+        padding:7px 10px;
+        font-size:11px;
+    }
+    /* Category bar: menampilkan tepat 5 kategori buku sebagai filter. */
+.category-bar {
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+    }
+    .books-section {
+        padding-left:16px;
+        padding-right:16px;
+    }
+    /* Book grid: mengatur agar kartu-kartu buku tersusun rapi dan sama lebarnya. */
+.book-grid {
+        grid-template-columns:1fr 1fr;
+        gap:16px;
+    }
+    /* Cover wrap: memberi ukuran area cover yang sama untuk semua buku. */
+.cover-wrap {
+        height:190px;
+    }
+    /* Detail top: membagi halaman menjadi area cover dan area informasi buku. */
+.detail-top {
+        grid-template-columns:1fr;
+    }
+    .detail-cover {
+        min-height:340px;
+    }
+    .detail-cover img {
+        height:300px;
+    }
+    .info-strip {
+        grid-template-columns:1fr 1fr;
+    }
+    /* Footer grid: membagi footer menjadi kolom About, Navigation, Category, dan Contact. */
+.footer-grid {
+        grid-template-columns:1fr 1fr;
+        gap:25px;
+    }
+    /* Form grid: menyusun field form menjadi dua kolom pada layar besar. */
+.form-grid {
+        grid-template-columns:1fr;
+    }
+    .form-grid .full {
+        grid-column:auto;
+    }
+    /* Admin shell: membagi layar Admin menjadi sidebar kiri dan konten kanan. */
+.admin-shell {
+        grid-template-columns:1fr;
+    }
+    .admin-sidebar {
+        border-right:0;
+        border-bottom:1px solid #eee;
+    }
+    /* Admin nav: menu Dashboard, Kelola Buku, Kategori, User, dan Pesanan. */
+.admin-nav {
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+    .admin-account {
+        display:none;
+    }
+    /* Stats grid: kartu ringkasan jumlah buku, user, pesanan, dan pendapatan. */
+.stats-grid {
+        grid-template-columns:1fr;
+    }
+    .admin-topbar {
+        height:auto;
+        gap:15px;
+    }
+    .admin-content {
+        padding:20px 14px 40px;
+    }
+}
+/* RESPONSIVE 480px: aturan khusus layar HP kecil. */
+@media(max-width:480px) {
+    /* Book grid: mengatur agar kartu-kartu buku tersusun rapi dan sama lebarnya. */
+.book-grid {
+        grid-template-columns:1fr;
+    }
+    /* Category bar: menampilkan tepat 5 kategori buku sebagai filter. */
+.category-bar {
+        grid-template-columns:1fr;
+    }
+    /* Footer grid: membagi footer menjadi kolom About, Navigation, Category, dan Contact. */
+.footer-grid {
+        grid-template-columns:1fr;
+    }
+    .hero h1 {
+        font-size:34px;
+    }
+    /* Penanda halaman login yang sedang dibuka. */
+.login-modes {
+        gap:10px;
+    }
+    .auth-left {
+        padding:40px 20px;
+    }
+    .auth-left .subtitle {
+        font-size:17px;
+    }
+}
+
+.card-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(31,82,121,.12);
+}
+.unavailable-badge,
+.unavailable-detail {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .1px;
+    color: #c91515;
+    background: #fff4f4;
+    border: 1.5px solid #e03a3a;
+    box-shadow: 0 2px 8px rgba(224,58,58,.10);
+}
+.unavailable-badge {
+    align-self:flex-start;
+    width:fit-content;
+    margin-top:6px;
+    padding:0;
+    border:0;
+    border-radius:7px;
+    background:transparent;
+    box-shadow:none;
+    color:#ef2f2f;
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:15px;
+    font-weight:700;
+    font-style:normal;
+    letter-spacing:.1px;
+}
+.disabled-btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    opacity:1;
+    background:#ff3138 !important;
+    border-color:#ff3138 !important;
+    color:#fff !important;
+    font-weight:700;
+    cursor:not-allowed;
+    box-shadow:none;
+}
+.unavailable-detail {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 9px;
+}
+.bank-fields {
+    display: none;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 16px;
+    padding: 18px;
+    border: 1px solid #cbdde9;
+    background: #f7fcff;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.6);
+}
+.bank-fields[hidden] { display: none !important; }
+.bank-fields .full { grid-column: 1 / -1; }
+.bank-fields input:focus,
+.bank-fields select:focus,
+.form-grid input:focus,
+.form-grid select:focus,
+.form-grid textarea:focus {
+    border-color: #69b6ef;
+    box-shadow: 0 0 0 3px rgba(105,182,239,.14);
+}
+.proof-preview {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border: 1px solid #cfe0ea;
+    border-radius: 10px;
+    background: #fff;
+}
+.proof-preview img {
+    width: 78px;
+    height: 78px;
+    object-fit: cover;
+    border-radius: 7px;
+    border: 1px solid #d4dee5;
+}
+.proof-preview span {
+    font-size: 12px;
+    color: #52616c;
+}
+.proof-thumb {
+    width: 78px;
+    height: 78px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #cbd8e0;
+}
+@media (max-width: 700px) {
+    .site-header { height: auto; min-height: 82px; flex-wrap: wrap; padding: 12px 14px; }
+    .brand img { width: 145px; }
+    .site-header nav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; gap: 6px; margin-left: 0; }
+    .site-header nav a { padding: 8px 10px; }
+    .header-actions { margin-left: auto; }
+    .card-actions { grid-template-columns: 1fr 1fr; }
+    .bank-fields { grid-template-columns: 1fr; }
+    .bank-fields .full { grid-column: auto; }
+}
+.proof-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    color: #1f5279;
+    font-weight: 700;
+}
+.proof-link small {
+    font-size: 11px;
+}
+
+/* =========================================================
+   TAMPILAN KARTU BUKU - SESUAI REFERENSI USER
+   ========================================================= */
+.card-btn:not(.disabled-btn):hover {
+    transform:translateY(-1px);
+    box-shadow:0 4px 9px rgba(31,82,121,.10);
+}
+.card-btn:not(.disabled-btn):active {
+    transform:translateY(1px) scale(.985);
+    box-shadow:0 1px 3px rgba(31,82,121,.09);
+}
+.card-btn.primary.cart-btn {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    min-height:38px;
+    height:38px;
+    gap:6px;
+    padding:0 8px;
+    border:1.5px solid #68b5ec;
+    border-radius:8px;
+    background:#68b5ec;
+    color:#fff;
+    font-size:11px;
+    font-weight:700;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:clip;
+    box-sizing:border-box;
+}
+.cart-plus {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:16px;
+    height:16px;
+    flex:0 0 16px;
+    margin:0 2px 0 0;
+    font-size:18px;
+    font-weight:400;
+    line-height:1;
+}
+
+@media (max-width: 720px) {
+    .category-bar {
+        display:flex;
+        flex-wrap:nowrap;
+        padding:14px 16px;
+        gap:10px;
+    }
+
+    .category-pill {
+        min-width: 135px;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-bar {
+        display:flex;
+        flex-wrap:nowrap;
+        padding:12px 16px;
+    }
+
+    .category-pill {
+        min-width: 125px;
+    }
+}
+
+/* =========================================================
+   PERBAIKAN NAVBAR DAN COVER ADMIN
+   ========================================================= */
+
+/* Warna aktif mengikuti biru muda website, bukan biru gelap. */
+.site-header nav a.active {
+    color: #fff;
+    background: #69b6ef;
+    border-color: #69b6ef;
+    box-shadow: 0 3px 7px rgba(31,82,121,.10);
+}
+
+.site-header nav a.active:hover,
+.site-header nav a.active:focus-visible {
+    color:#fff;
+    background:var(--navy-dark);
+    box-shadow:0 9px 22px rgba(31,82,121,.28);
+}
+
+.site-header nav a:not(.active):active {
+    color:#fff;
+    background:var(--navy);
+    border-color:var(--navy);
+}
+
+.site-header nav a:active,
+.site-header nav a.active:active {
+    transform:translateY(1px) scale(.985);
+    box-shadow:0 1px 3px rgba(31,82,121,.10);
+}
+
+/* Efek tekan dibuat kecil, bukan naik/turun jauh. */
+.header-cart:hover {
+    transform: none;
+}
+
+/* Preview cover saat edit buku di Admin. */
+.admin-cover-current {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 1px solid #d9e5ec;
+    border-radius: 10px;
+    background: #f8fcff;
+}
+
+.admin-cover-preview {
+    width: 58px;
+    height: 76px;
+    object-fit: contain;
+    border: 1px solid #d5e1e8;
+    border-radius: 6px;
+    background: #fff;
+    padding: 3px;
+}
+
+.admin-cover-current strong {
+    display: block;
+    color: #315975;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.admin-cover-current small {
+    display: block;
+    color: #6f7e88;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+/* Thumbnail cover pada tabel Admin sedikit lebih rapi. */
+.data-table td img {
+    border-radius: 5px;
+    background: #f8fafc;
+}
+
+/* =========================================================
+   FINAL FIX - PREVIEW COVER ADMIN + REKENING RASTORY
+   ========================================================= */
+.cover-file-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.cover-upload-box {
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 12px;
+    border: 1px solid #cbd9e2;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.cover-choose-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 36px;
+    padding: 8px 14px;
+    border-radius: 7px;
+    background: #69b6ef;
+    border: 1px solid #69b6ef;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.cover-choose-btn:hover {
+    background: #5ba8df;
+    border-color: #5ba8df;
+}
+
+.cover-file-name {
+    min-width: 0;
+    color: #6f7e88;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.admin-cover-live-preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 10px 12px;
+    border: 1px solid #d9e5ec;
+    border-radius: 10px;
+    background: #f8fcff;
+}
+
+.admin-cover-live-preview[hidden] {
+    display: none !important;
+}
+
+.admin-cover-live-preview img {
+    width: 68px;
+    height: 88px;
+    object-fit: contain;
+    border: 1px solid #d5e1e8;
+    border-radius: 6px;
+    background: #fff;
+    padding: 3px;
+}
+
+.admin-cover-live-preview strong {
+    display: block;
+    color: #315975;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.admin-cover-live-preview small {
+    display: block;
+    color: #6f7e88;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.payment-account-card {
+    padding: 18px;
+    border: 1px solid #cbdde9;
+    background: #f7fcff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(31,82,121,.06);
+}
+
+.payment-account-head strong {
+    display: block;
+    color: #315975;
+    font-size: 16px;
+}
+
+.payment-account-head span {
+    display: block;
+    color: #6f7e88;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.payment-account-info {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.payment-account-info > div {
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #d9e5ec;
+    border-radius: 9px;
+}
+
+.payment-account-info small {
+    display: block;
+    color: #7b8992;
+    font-size: 10px;
+    margin-bottom: 4px;
+}
+
+.payment-account-info strong {
+    color: #244f70;
+    font-size: 14px;
+}
+
+.payment-account-number strong {
+    letter-spacing: 1px;
+}
+
+.payment-note {
+    margin: 12px 0 0;
+    padding: 9px 11px;
+    border-radius: 8px;
+    background: #fff8e8;
+    color: #7a6333;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+    .cover-upload-box {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .cover-file-name {
+        width: 100%;
+    }
+
+    .payment-account-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .info-strip {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* =========================================================
+   PERBAIKAN TAMBAHAN SESUAI PERMINTAAN TERBARU
+   - Teks tombol keranjang tetap konsisten pada layar kecil.
+   - Jarak tanda + dan tulisan Keranjang tetap rapi.
+   - Nomor telepon checkout.
+   ========================================================= */
+@media (max-width: 700px) {
+    .card-btn.primary.cart-btn {
+        font-size: 11px !important;
+        min-width: 0;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+.checkout-phone-note {
+    color: #6f7e88;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+/* =========================================================
+   FIX KELOLA BUKU - HILANGKAN GESER SAMPING
+   ========================================================= */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.form-grid > * {
+    min-width: 0;
+}
+
+.data-table th,
+.data-table td {
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+.form-grid input,
+.form-grid select,
+.form-grid textarea {
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* =========================================================
+   BUKTI TRANSFER DI RIWAYAT PEMBELIAN
+   Foto tetap kecil; kotak biru dibuat sedikit lebih panjang.
+   Ubah nilai width di bawah jika ingin mengatur panjang kotak.
+   ========================================================= */
+.history-proof {
+    display: inline-grid;
+    grid-template-columns: 68px minmax(0, 1fr);
+    align-items: center;
+    justify-content: start;
+    gap: 12px;
+    width: min(100%, 420px);
+    max-width: 100%;
+    margin-top: 14px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    border: 1px solid #d8e8f3;
+    border-radius: 10px;
+    background: #f4faff;
+}
+
+.history-proof-link {
+    display: block;
+    width: 68px;
+    max-width: 68px;
+    padding: 4px;
+    box-sizing: border-box;
+    border: 1px solid #d6e4ed;
+    border-radius: 8px;
+    background: #fff;
+    transition: .2s ease;
+}
+
+.history-proof-link:hover {
+    border-color: #8fc6e9;
+    box-shadow: 0 3px 9px rgba(31,82,121,.09);
+}
+
+.history-proof-link img {
+    display: block;
+    width: 58px;
+    height: 78px;
+    object-fit: contain;
+    border: 1px solid #e3ebf0;
+    border-radius: 6px;
+    background: #f8fbfd;
+}
+
+.history-proof-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+}
+
+.history-proof-heading h3 {
+    margin: 0;
+    color: #315975;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.history-proof-heading span {
+    color: #82939d;
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.history-proof-hint {
+    color: #3979a4 !important;
+    font-weight: 600;
+}
+
+@media (max-width: 700px) {
+    .history-proof {
+        grid-template-columns: 60px minmax(0, 1fr);
+        gap: 9px;
+        padding: 8px 9px;
+    }
+
+    .history-proof-link {
+        width: 60px;
+        max-width: 60px;
+    }
+
+    .history-proof-link img {
+        width: 50px;
+        height: 68px;
+    }
+}
+
+/* =========================================================
+   TABEL PESANAN TERBARU PADA DASHBOARD ADMIN
+   Menggunakan gaya tabel admin agar tiap pesanan terbaca rapi.
+   ========================================================= */
+.dashboard-orders-panel {
+    width: 100%;
+    max-width: none;
+    margin-top: 24px;
+    padding: 22px;
+}
+
+.dashboard-orders-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 15px;
+}
+
+.dashboard-orders-toolbar h2 {
+    margin: 0 0 5px;
+    color: #315975;
+    font-size: 20px;
+}
+
+.dashboard-orders-toolbar p {
+    margin: 0;
+    color: #7b8d99;
+    font-size: 12px;
+}
+
+.dashboard-orders-toolbar .btn {
+    white-space: nowrap;
+}
+
+.dashboard-orders-table-wrap {
+    width: 100%;
+    overflow-x: auto !important;
+    border: 1px solid #e2ebf1;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.dashboard-orders-table {
+    width: 100%;
+    min-width: 720px;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.dashboard-orders-table th {
+    padding: 12px 13px;
+    border-bottom: 1px solid #dce8ef;
+    background: #f1f8fd;
+    color: #315975;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dashboard-orders-table td {
+    padding: 13px;
+    border-bottom: 1px solid #edf1f4;
+    color: #425d70;
+    font-size: 11px;
+    vertical-align: middle;
+}
+
+.dashboard-orders-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.dashboard-orders-table tbody tr:hover {
+    background: #f8fcff;
+}
+
+.dashboard-order-number {
+    color: #315975;
+    font-size: 11px;
+    overflow-wrap: anywhere;
+}
+
+.dashboard-order-total-text {
+    color: #1f5f99;
+    white-space: nowrap;
+}
+
+.dashboard-order-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #edf6fb;
+    color: #285878;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.dashboard-order-status-menunggu {
+    background: #fff4df;
+    color: #96651c;
+}
+
+.dashboard-order-status-diproses,
+.dashboard-order-status-dikirim {
+    background: #eaf4ff;
+    color: #2b6591;
+}
+
+.dashboard-order-status-selesai {
+    background: #e9f8ef;
+    color: #1f8a52;
+}
+
+.dashboard-order-status-dibatalkan {
+    background: #fff0f0;
+    color: #b42323;
+}
+
+.dashboard-orders-action-heading,
+.dashboard-orders-action-cell {
+    text-align: center !important;
+}
+
+.dashboard-order-detail-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 54px;
+    padding: 6px 10px;
+    border: 1px solid #b8d8ea;
+    border-radius: 7px;
+    background: #f5fbff;
+    color: #2f6b96;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.dashboard-order-detail-link:hover {
+    border-color: #69b6ef;
+    background: #eaf6ff;
+}
+
+.dashboard-orders-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 28px 16px;
+    border: 1px dashed #cbdde9;
+    border-radius: 10px;
+    background: #f8fcff;
+    color: #82939d;
+    text-align: center;
+    font-size: 12px;
+}
+
+.dashboard-orders-empty strong {
+    color: #315975;
+    font-size: 14px;
+}
+
+.dashboard-orders-empty-icon {
+    margin-bottom: 3px;
+    font-size: 25px;
+}
+
+@media (max-width: 700px) {
+    .dashboard-orders-panel {
+        padding: 16px;
+    }
+
+    .dashboard-orders-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+/* =========================================================
+   HALAMAN WEBSITE KHUSUS ADMIN
+   Pratinjau katalog berada di dalam Panel Admin dan tidak
+   mengarahkan admin ke beranda pelanggan.
+   ========================================================= */
+.admin-website-page {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    min-width: 0;
+}
+
+.admin-website-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 30px 32px;
+    border: 1px solid #a9cfe5;
+    border-radius: 15px;
+    background: linear-gradient(120deg, #eaf6fd 0%, #d4eaf7 100%);
+}
+
+.admin-website-hero-copy {
+    max-width: 690px;
+}
+
+.admin-website-eyebrow {
+    display: inline-block;
+    color: #39779e;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .09em;
+}
+
+.admin-website-hero h2 {
+    margin: 9px 0 8px;
+    color: #315975;
+    font-size: clamp(23px, 3vw, 32px);
+    font-weight: 800;
+}
+
+.admin-website-hero p {
+    max-width: 620px;
+    margin: 0;
+    color: #587589;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.admin-website-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.admin-website-hero-mark {
+    display: grid;
+    flex: 0 0 104px;
+    width: 104px;
+    height: 104px;
+    place-items: center;
+    border: 1px solid #c3deee;
+    border-radius: 24px;
+    background: rgba(255,255,255,.72);
+    font-size: 48px;
+}
+
+.admin-website-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.admin-website-summary-card {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+    padding: 17px 20px;
+    border: 1px solid #e0eaf0;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(35,76,105,.04);
+}
+
+.admin-website-summary-card span {
+    color: #7b8e9b;
+    font-size: 11px;
+}
+
+.admin-website-summary-card strong {
+    color: #315f80;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.admin-website-catalog {
+    padding: 22px;
+    border: 1px solid #e0eaf0;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(35,76,105,.04);
+}
+
+.admin-website-section-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 15px;
+}
+
+.admin-website-section-heading h2 {
+    margin: 5px 0;
+    color: #315975;
+    font-size: 21px;
+}
+
+.admin-website-section-heading p {
+    margin: 0;
+    color: #7b8d99;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.admin-website-category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eaf0f4;
+}
+
+.admin-website-category-list span {
+    padding: 7px 12px;
+    border: 1px solid #d4e5f0;
+    border-radius: 999px;
+    background: #f4faff;
+    color: #376a8c;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.admin-website-book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+    gap: 16px;
+}
+
+.admin-website-book-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #e0e9ef;
+    border-radius: 12px;
+    background: #fff;
+    transition: .2s ease;
+}
+
+.admin-website-book-card:hover {
+    border-color: #a9cfe5;
+    box-shadow: 0 6px 18px rgba(36,92,130,.09);
+    transform: translateY(-2px);
+}
+
+.admin-website-book-cover {
+    display: grid;
+    height: 190px;
+    padding: 12px;
+    place-items: center;
+    background: #f2f8fc;
+}
+
+.admin-website-book-cover img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.admin-website-book-info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 7px;
+    padding: 14px;
+}
+
+.admin-website-book-category {
+    color: #6c91a9;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.admin-website-book-info h3 {
+    min-height: 38px;
+    margin: 0;
+    color: #284d68;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+.admin-website-book-author {
+    margin: 0;
+    color: #81909a;
+    font-size: 11px;
+}
+
+.admin-website-book-price {
+    margin-top: 3px;
+    color: #17659d;
+    font-size: 14px;
+}
+
+.admin-website-book-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 11px;
+    border-top: 1px solid #edf2f5;
+    font-size: 10px;
+}
+
+.admin-website-book-bottom .is-available {
+    color: #32845c;
+    font-weight: 700;
+}
+
+.admin-website-book-bottom .is-empty {
+    color: #bd4b4b;
+    font-weight: 700;
+}
+
+.admin-website-book-bottom a {
+    color: #286d9b;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.admin-website-book-bottom a:hover {
+    text-decoration: underline;
+}
+
+.admin-website-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 38px 18px;
+    border: 1px dashed #c9dce8;
+    border-radius: 12px;
+    background: #f8fcff;
+    color: #718797;
+    font-size: 12px;
+    text-align: center;
+}
+
+.admin-website-empty strong {
+    color: #315975;
+    font-size: 15px;
+}
+
+@media (max-width: 720px) {
+    .admin-website-hero {
+        padding: 22px;
+    }
+
+    .admin-website-hero-mark {
+        flex-basis: 72px;
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+        font-size: 34px;
+    }
+
+    .admin-website-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-website-catalog {
+        padding: 16px;
+    }
+
+    .admin-website-book-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .admin-website-book-cover {
+        height: 150px;
+    }
+}
+
+@media (max-width: 420px) {
+    .admin-website-hero-mark {
+        display: none;
+    }
+
+    .admin-website-book-grid {
+        grid-template-columns: 1fr;
+    }
+}
