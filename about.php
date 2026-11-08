@@ -18,7 +18,7 @@ require __DIR__ . '/includes/header.php';
 
 <!--
     CSS khusus halaman About.
-    File ini hanya memengaruhi halaman About.
+    untuk halaman About.
 -->
 <style>
 <?php require __DIR__ . '/assets/css/about.css'; ?>

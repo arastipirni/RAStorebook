@@ -55,7 +55,7 @@
                 <a href="index.php?category=Fantasi">
                     Fantasi
                 </a>
-                <a href="index.php?category=Technologi%20%26%20Pemrograman">
+                <a href="index.php?category=Teknologi+%26+Pemrograman">
                     Teknologi &amp; Pemrograman
                 </a>
                 <a href="index.php?category=Komik">

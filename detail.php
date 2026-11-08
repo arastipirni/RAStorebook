@@ -88,14 +88,10 @@ $page_title = $book['title'] . ' - RAStory Bookstore';
 
 require __DIR__ . '/includes/header.php';
 
-?>
-
-
+?>as
 
 <!-- =========================================================
      DETAIL BUKU
-     
-     Kegunaan:
      Menampilkan seluruh informasi utama buku.
      ========================================================= -->
 
@@ -104,8 +100,6 @@ require __DIR__ . '/includes/header.php';
 
     <!-- =====================================================
          TOMBOL KEMBALI
-         
-         Kegunaan:
          Mengembalikan User ke halaman utama BookStore.
          ===================================================== -->
 
@@ -120,8 +114,6 @@ require __DIR__ . '/includes/header.php';
 
             <!-- =============================================
                  COVER BUKU
-                 
-                 Kegunaan:
                  Menampilkan gambar cover buku.
                  ============================================= -->
 
@@ -247,8 +239,7 @@ require __DIR__ . '/includes/header.php';
 
         <!-- =================================================
              KOTAK INFORMASI BUKU
-             
-             Kegunaan:
+            
              Menampilkan Penulis, Kategori, Stok,
              dan Harga dalam SATU kotak putih.
              
@@ -354,9 +345,7 @@ require __DIR__ . '/includes/header.php';
 
 
 <!-- =========================================================
-     FOOTER
-     
-     Kegunaan:
+     FOOTER   
      Footer berada di luar detail-page supaya
      tidak menyatu dengan kotak informasi buku.
      ========================================================= -->

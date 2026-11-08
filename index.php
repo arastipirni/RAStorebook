@@ -6,7 +6,7 @@ $page_title = 'RAStory Bookstore - Beranda';
 
 /*
 |--------------------------------------------------------------------------
-| AMBIL PENCARIAN DAN KATEGORI
+| AMBIL PENCARIAN DAN KATEGORI dari URL
 |--------------------------------------------------------------------------
 */
 

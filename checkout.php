@@ -13,7 +13,7 @@ if (!$items) {
 $total = cart_total($pdo);
 $error = '';
 
-// Rekening RAStory (contoh/placeholder). Ganti dengan nomor rekening BCA RAStory yang asli sebelum dipakai untuk transaksi nyata.
+// Rekening RAStory (contoh/placeholder)
 const RASTORY_BCA_ACCOUNT = '0922131430';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
