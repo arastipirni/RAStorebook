@@ -88,7 +88,7 @@ $page_title = $book['title'] . ' - RAStory Bookstore';
 
 require __DIR__ . '/includes/header.php';
 
-?>as
+?>
 
 <!-- =========================================================
      DETAIL BUKU
